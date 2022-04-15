@@ -1,3 +1,4 @@
 Resposta 1:
-  SELECT o.fname nome, o.lname AS sobrenome, b.name AS nome_empresa, c.city AS cidade FROM officer AS o INNER JOIN
-  business AS b ON b.cust_id = o.cust_id INNER JOIN customer AS c ON c.cust_id = o.cust_id;
+  SELECT o.fname nome, o.lname AS sobrenome, b.name AS nome_empresa, c.city AS cidade FROM officer AS o INNER JOIN business AS b ON b.cust_id = o.cust_id INNER JOIN customer AS c ON c.cust_id = o.cust_id;
+Resposta 2:
+  SELECT CONCAT(fname,' ', lname) AS nome FROM individual AS i INNER JOIN customer AS c ON c.cust_id = i.cust_id UNION SELECT b.name AS nome FROM business AS b INNER     JOIN customer AS c ON c.cust_id = b.cust_id, branch AS br WHERE br.city <> c.city;
