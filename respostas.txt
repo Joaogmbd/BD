@@ -3,3 +3,5 @@ Resposta 1:
 Resposta 2:
   SELECT CONCAT(fname,' ', lname) AS nome FROM individual AS i INNER JOIN customer AS c ON c.cust_id = i.cust_id UNION SELECT b.name AS nome FROM business AS b INNER JOIN customer AS c ON c.cust_id = b.cust_id, branch AS br WHERE br.city <> c.city;
    
+Resposta 5 temp:
+  SELECT account_id, avail_balance FROM account WHERE account_id > 5 GROUP BY account_id HAVING (avail_balance) > 7000 ORDER BY account_id ASC;
