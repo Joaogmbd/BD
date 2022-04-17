@@ -4,6 +4,22 @@ Resposta 2:
   SELECT CONCAT(fname,' ', lname) AS nome FROM individual AS i INNER JOIN customer AS c ON c.cust_id = i.cust_id UNION SELECT b.name AS nome FROM business AS b INNER JOIN customer AS c ON c.cust_id = b.cust_id, branch AS br WHERE br.city <> c.city;
 Resposta 3:
   SELECT CONCAT(e.fname, ' ', e.lname) AS funcionario, a.account_id AS id_conta, t.txn_date AS data_transacao FROM employee AS e LEFT OUTER JOIN account AS a ON a.open_emp_id = e.emp_id LEFT OUTER JOIN transaction AS t ON t.account_id = a.account_id ORDER BY funcionario, t.txn_date ASC;
+Reposta 4:
+  SELECT conta.account_id,
+        conta.avail_balance as Saldo,
+        COALESCE(CONCAT(individual.fname, ' ', individual.lname), business.name) AS nome,
+        conta.open_branch_id AS AgenciaID,
+        branch.name AS Agencia
+
+FROM account conta
+
+  INNER JOIN branch ON (conta.open_branch_id = branch.branch_id)
+  INNER JOIN customer cust ON (conta.cust_id = cust.cust_id)
+
+  LEFT JOIN individual ON (cust.cust_id = individual.cust_id)
+  LEFT JOIN business ON (cust.cust_id = business.cust_id)
+
+GROUP BY AgenciaID, Agencia, Saldo, account_id
    
 Resposta 5 temp:
   SELECT account_id, avail_balance FROM account WHERE account_id > 5 GROUP BY account_id HAVING (avail_balance) > 7000 ORDER BY account_id ASC;
